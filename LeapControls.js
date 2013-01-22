@@ -55,7 +55,7 @@ THREE.LeapControls = function ( object, domElement ) {
 		zAlignment: -50,
 		
 		//Makes movement faster
-		movementConstant:.1,
+		movementConstant:.01,
 		
 		//deceleration for when hand leaves field
 		movementDampening:1.05,

@@ -1,3 +1,12 @@
+
+
+<!--
+	
+    webgl_particles_random example by @alteredq
+    
+	Slightly modified to add leap controls
+
+-->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -70,10 +79,46 @@
 				document.body.appendChild( container );
 
 				//camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
-				camera = new THREE.PerspectiveCamera(70,window.innerWidth/window.innerHeight,1,80000)
+				camera = new THREE.PerspectiveCamera(70,window.innerWidth/window.innerHeight,1,3000)
 				camera.position.z = 1000;
 				
+				
+				
+				/*
+				
+					ADDED LEAP CONTROLS
+				
+				*/
 				controls = new THREE.LeapControls(camera)
+				
+				
+				//TO CHANGE SPEED / ROTATION / ETC
+				//Alter the variables below
+				//right now they assigned the default values
+				
+				//makes rotation slower
+				controls.leapConstants.rotationConstant = 200
+		
+				//when the hand leaves the field
+				//this is the amount the rotation will be
+				//divided by ever render
+				controls.leapConstants.rotationDampening = 1.01,
+		
+				//Changes the 0 of the Y field
+				controls.leapConstants.yAlignment = 250,
+				
+				//Changes the 0 of the Z field
+				controls.leapConstants.zAlignment = -50
+				
+				//Makes movement faster
+				controls.leapConstants.movementConstant=.01
+				
+				//deceleration for when hand leaves field
+				controls.leapConstants.movementDampening=1.05
+				
+				
+				
+				
 
 				scene = new THREE.Scene();
 				scene.fog = new THREE.FogExp2( 0x000000, 0.0007 );
@@ -181,7 +226,12 @@
 
 			function animate() {
 				
-				//updating the controls 
+				/*
+				
+					ADDED LEAP CONTROLS UPDATE
+				
+				*/
+				
 				controls.update(clock.getDelta() );
 				render();
 				stats.update();
