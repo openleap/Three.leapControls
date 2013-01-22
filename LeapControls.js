@@ -42,16 +42,24 @@ THREE.LeapControls = function ( object, domElement ) {
 	this.leapConstants = {
 		
 		//makes rotation slower (also dependent on this.lookSpeed)
-		rotationConstant:500,
+		rotationConstant:100,
+		
+		//when the hand leaves the field
+		//this is the amount the rotation will be
+		//divided by ever render
+		rotationDampening:1.01,
 		
 		//Changes the 0 of the Y field
-		yAlignment: 250,
+		yAlignment: 200,
 		
 		//Changes the 0 of the Z field
-		zAlignment: 50,
+		zAlignment: -50,
 		
 		//Makes movement faster
-		movementConstant:20
+		movementConstant:.1,
+		
+		//deceleration for when hand leaves field
+		movementDampening:1.05,
 		
 	}
 	
@@ -75,7 +83,7 @@ THREE.LeapControls = function ( object, domElement ) {
 	
 	//Added to smooth camera to a stop
 	this.minSpeed = 0
-	this.deceleration = 30
+	this.deceleration = 100
 	
 	
 	
@@ -112,8 +120,10 @@ THREE.LeapControls = function ( object, domElement ) {
 	};
 
 
-	
-	
+	//Sets rotation contants
+	//so that when the hand is removed from the field, it won't automatically jump to no movement
+	this.leapRotateHorizontal = 0
+	this.leapRotateVertical = 0
 
 	this.update = function ( delta ) {
 		
@@ -127,24 +137,29 @@ THREE.LeapControls = function ( object, domElement ) {
 		
 		//if the hand is within range of leap,
 		// use its X & Y to look horizontally and vertically
-		if ( window.leapPos.x !=0 ) {
-
-			var actualLookSpeed = delta * this.lookSpeed;
-
-			this.rotateHorizontally( actualLookSpeed * window.leapPos.x/this.leapConstants.rotationConstant);
-			this.rotateVertically( actualLookSpeed * -( window.leapPos.y-this.leapConstants.yAlignment)/this.leapConstants.rotationConstant);
-
+		
+		
+		if ( window.leapPos.x !=0 && window.leapPos.y !=0) {
+			this.leapRotateHorizontal = window.leapPos.x/this.leapConstants.rotationConstant
+			this.leapRotateVertical = -( window.leapPos.y-this.leapConstants.yAlignment)/this.leapConstants.rotationConstant
+		}else{
+			this.leapRotateHorizontal = this.leapRotateHorizontal/this.leapConstants.rotationDampening
+			this.leapRotateVertical = this.leapRotateVertical/this.leapConstants.rotationDampening
 		}
+			
+		var actualLookSpeed = delta * this.lookSpeed;
+		this.rotateHorizontally( actualLookSpeed * this.leapRotateHorizontal);
+		this.rotateVertically( actualLookSpeed  * this.leapRotateVertical);
 		
 		
 		//If there is only one pointable, use its position in Z space to move the camera
 		if(window.leapPos.z!=0 && window.leapPos.stationary ==false){
-			this.movementSpeed = -(window.leapPos.z+this.leapConstants.zAlignment)*this.leapConstants.movementConstant
+			this.movementSpeed += -(window.leapPos.z+this.leapConstants.zAlignment)*this.leapConstants.movementConstant
 		}else{
-			if(this.movementSpeed > this.minSpeed){
-				this.movementSpeed -= this.deceleration
+			if(this.movementSpeed > 5 || this.movementSpeed < -5 ){
+				this.movementSpeed = this.movementSpeed/this.leapConstants.movementDampening
 			}else{
-				this.movementSpeed = this.minSpeed	
+				this.movementSpeed = 0
 			}
 			
 		}
