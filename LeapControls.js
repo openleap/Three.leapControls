@@ -411,7 +411,7 @@ var leapInit =  function (){
 	  
 	  //TODO
 	  //Create THREE scene, and add rendering function here:
-	  laGalaxy.animate();
+	  renderer.render( scene, camera );
 	})
 			  
 }
