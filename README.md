@@ -11,6 +11,5 @@ Right now, only two controls:
 	To use this script, simply make sure 
 		- that you call it in the html, 
 		- initialize your THREE scene,
-		- add the rendering function to the initLeap() function, 
-			shown at the bottom of this page
+		- add the THREE rendering/animation function to the initLeap() function, 
 		- call initLeap() to start the scene rendering!
