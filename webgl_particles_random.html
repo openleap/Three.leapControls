@@ -207,45 +207,7 @@
 			}
 			
 			
-			var leapInit =  function (){
-			  
-				window.leapPos={
-					x:0,
-					y:0,
-					z:0,
-					stationary:false
-				 }
-				 
-				Leap.loop(function(frame) {
-				  
-				  if(frame.pointables[0]){
-					  window.leapPos.x = frame.pointables[0].tipPosition[0]
-					  window.leapPos.y = frame.pointables[0].tipPosition[1]
-					  window.leapPos.z = frame.pointables[0].tipPosition[2]
-					  
-				  //if no pointables present, set to  zero
-				  }else{
-					  window.leapPos.x = 0
-					  window.leapPos.y = 0
-					  window.leapPos.z = 0
-					  
-				  }
-				  
-				  //If there is a second pointable, set to stationary
-				  if(frame.pointables[1]){
-					  window.leapPos.stationary = true
-				  }else{
-					  window.leapPos.stationary = false	
-				  }
-				  latestFrame = frame
-				  
-				  //TODO
-				  //Create THREE scene, and add rendering function here:
-				  animate();
-				})
-						  
-			}
-			
+			//Calling the Leap Init function as defined in Leap Controls
 			leapInit();
 
 

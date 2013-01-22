@@ -22,8 +22,7 @@
 	To use this script, simply make sure 
 		- that you call it in the html, 
 		- initialize your THREE scene,
-		- add the rendering function to the initLeap() function, 
-			shown at the bottom of this page
+		- add the THREE rendering function to the initLeap() function,
 		- call initLeap() to start the scene rendering!
 
 */
@@ -386,14 +385,9 @@ THREE.LeapControls = function ( object, domElement ) {
 };
 
 
-
-
-
-
-// Use the below function to start your scene animating using the leap controls!
-
+			
 var leapInit =  function (){
-			  
+  
 	window.leapPos={
 		x:0,
 		y:0,
@@ -426,7 +420,10 @@ var leapInit =  function (){
 	  
 	  //TODO
 	  //Create THREE scene, and add rendering function here:
-	  renderer.render( scene, camera );
+	  animate();
 	})
 			  
 }
+
+
+
