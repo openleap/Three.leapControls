@@ -1,4 +1,6 @@
-Basic THREE.js Controls for the Leap
+###An <a href="openleap.org">OpenLeap</a> project started by @Cabbibo.
+
+#Basic three.js controls for the Leap
 
 Right now, only two controls:
 	
