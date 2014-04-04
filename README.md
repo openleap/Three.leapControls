@@ -63,7 +63,7 @@
   Create your camera controls by passing in the camera and controller you want to use. If you want to change any parameters, do so here:
   
 
-  '''html
+  
       /*
 
          ADD LEAP CAMERA CONTROLS
@@ -83,20 +83,18 @@
       controls.strongDampening  = .90;
       controls.dampening        = controls.weakDampening;
   
-  '''
+
 
   Lastly, make sure to update your controls in the animate loop:
 
-  '''html
 
-    function animate() {
-                  
-        requestAnimationFrame( animate );
-        controls.update();
-        render();
-        
-    }
+      function animate() {
+                    
+          requestAnimationFrame( animate );
+          controls.update();
+          render();
+          
+      }
 
-  '''
 
   This should get you rolling!
