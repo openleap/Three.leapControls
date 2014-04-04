@@ -38,27 +38,27 @@
 
   In your initialization function, initialize the camera, and controller:
 
-  '''html
+  '''javascript
 
-    /*
-       
-       ADD THREE Camera
+      /*
+         
+         ADD THREE Camera
 
-    */
+      */
 
-    camera = new THREE.PerspectiveCamera(70,window.innerWidth/window.innerHeight,1,3000)
-    camera.position.z = 1000;
-    
-    
-    
-    /*
-    
-      ADD LEAP CONTROLLER
+      camera = new THREE.PerspectiveCamera(70,window.innerWidth/window.innerHeight,1,3000)
+      camera.position.z = 1000;
+      
+      
+      
+      /*
+      
+        ADD LEAP CONTROLLER
 
-    */
+      */
 
-    controller = new Leap.Controller();
-    controller.connect();
+      controller = new Leap.Controller();
+      controller.connect();
 
   '''
 
@@ -66,24 +66,24 @@
   
 
   '''html
-    /*
+      /*
 
-       ADD LEAP CAMERA CONTROLS
+         ADD LEAP CAMERA CONTROLS
 
-    */
-    controls = new THREE.LeapFlyControls( camera , controller );
+      */
+      controls = new THREE.LeapFlyControls( camera , controller );
 
-    // API
-    controls.rollSpeed        = .005;
-    controls.lookSpeed        = .018;
-    controls.movementSpeed    = .10;
+      // API
+      controls.rollSpeed        = .005;
+      controls.lookSpeed        = .018;
+      controls.movementSpeed    = .10;
 
-    controls.directionFactor  = .01;
-    controls.positionFactor   = .01;
+      controls.directionFactor  = .01;
+      controls.positionFactor   = .01;
 
-    controls.weakDampening    = .99;
-    controls.strongDampening  = .90;
-    controls.dampening        = controls.weakDampening;
+      controls.weakDampening    = .99;
+      controls.strongDampening  = .90;
+      controls.dampening        = controls.weakDampening;
   
   '''
 
