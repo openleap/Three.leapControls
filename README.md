@@ -38,7 +38,6 @@
 
   In your initialization function, initialize the camera, and controller:
 
-  '''javascript
 
       /*
          
@@ -60,7 +59,6 @@
       controller = new Leap.Controller();
       controller.connect();
 
-  '''
 
   Create your camera controls by passing in the camera and controller you want to use. If you want to change any parameters, do so here:
   
