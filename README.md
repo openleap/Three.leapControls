@@ -40,49 +40,50 @@
 
   '''html
 
-  /*
-     
-     ADD THREE Camera
+    /*
+       
+       ADD THREE Camera
 
-  */
+    */
 
-  camera = new THREE.PerspectiveCamera(70,window.innerWidth/window.innerHeight,1,3000)
-  camera.position.z = 1000;
-  
-  
-  
-  /*
-  
-    ADD LEAP CONTROLLER
+    camera = new THREE.PerspectiveCamera(70,window.innerWidth/window.innerHeight,1,3000)
+    camera.position.z = 1000;
+    
+    
+    
+    /*
+    
+      ADD LEAP CONTROLLER
 
-  */
+    */
 
-  controller = new Leap.Controller();
-  controller.connect();
+    controller = new Leap.Controller();
+    controller.connect();
+
   '''
 
   Create your camera controls by passing in the camera and controller you want to use. If you want to change any parameters, do so here:
   
 
   '''html
-  /*
+    /*
 
-     ADD LEAP CAMERA CONTROLS
+       ADD LEAP CAMERA CONTROLS
 
-  */
-  controls = new THREE.LeapFlyControls( camera , controller );
+    */
+    controls = new THREE.LeapFlyControls( camera , controller );
 
-  // API
-  controls.rollSpeed        = .005;
-  controls.lookSpeed        = .018;
-  controls.movementSpeed    = .10;
+    // API
+    controls.rollSpeed        = .005;
+    controls.lookSpeed        = .018;
+    controls.movementSpeed    = .10;
 
-  controls.directionFactor  = .01;
-  controls.positionFactor   = .01;
+    controls.directionFactor  = .01;
+    controls.positionFactor   = .01;
 
-  controls.weakDampening    = .99;
-  controls.strongDampening  = .90;
-  controls.dampening        = controls.weakDampening;
+    controls.weakDampening    = .99;
+    controls.strongDampening  = .90;
+    controls.dampening        = controls.weakDampening;
   
   '''
 
@@ -90,13 +91,13 @@
 
   '''html
 
-  function animate() {
-				
-      requestAnimationFrame( animate );
-      controls.update();
-      render();
-      
-  }
+    function animate() {
+                  
+        requestAnimationFrame( animate );
+        controls.update();
+        render();
+        
+    }
 
   '''
 
