@@ -38,7 +38,7 @@
 
   In your initialization function, initialize the camera, and controller:
 
-  '''javascript
+  '''html
 
   /*
      
@@ -64,8 +64,7 @@
   Create your camera controls by passing in the camera and controller you want to use. If you want to change any parameters, do so here:
   
 
-  '''javascript
-
+  '''html
   /*
 
      ADD LEAP CAMERA CONTROLS
@@ -89,8 +88,7 @@
 
   Lastly, make sure to update your controls in the animate loop:
 
-  '''javascript
-
+  '''html
 
   function animate() {
 				
